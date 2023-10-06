@@ -6,12 +6,6 @@
         <v-img cover height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
         <v-card-item>
             <v-card-title>Raclette savoyarde</v-card-title>
-            <v-card-subtitle>
-                Temps de préparation : ...
-            </v-card-subtitle>
-            <v-card-subtitle>
-                Pour x personnes
-            </v-card-subtitle>
         </v-card-item>
         <v-card-text>
             <v-list>

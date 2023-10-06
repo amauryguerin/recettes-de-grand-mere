@@ -33,6 +33,8 @@ export default {
     position: fixed;
     bottom: 10rem;
     right: 10rem;
-    color: lightcoral;
+    background-color: lightcoral;
+    color: #FFF;
+    font-size: 2rem;
 }
 </style>

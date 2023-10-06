@@ -1,11 +1,8 @@
 <template>
     <v-card :loading="loading" class="mx-auto my-12" max-width="374">
-        <template v-slot:loader="{ isActive }">
-            <v-progress-linear :active="isActive" color="deep-purple" height="4" indeterminate></v-progress-linear>
-        </template>
         <v-img cover height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
         <v-card-item>
-            <v-card-title>Raclette savoyarde</v-card-title>
+            <v-card-title> {{ recipe.title }} </v-card-title>
         </v-card-item>
         <v-card-text>
             <v-list>
@@ -15,7 +12,7 @@
         </v-card-text>
         <v-divider class="mx-4 mb-1"></v-divider>
         <v-card-actions>
-            <v-btn color="deep-purple-lighten-2" variant="text" @click="reserve">
+            <v-btn color="deep-purple-lighten-2" variant="text">
                 Modifier la recette
             </v-btn>
         </v-card-actions>
@@ -24,16 +21,9 @@
 
 <script>
 export default {
-    data: () => ({
-        loading: false,
-        selection: 1,
-    }),
-
+    props: ["recipe"],
     methods: {
-        reserve() {
-            this.loading = true
-            setTimeout(() => (this.loading = false), 2000)
-        },
-    },
+
+    }
 }
 </script>

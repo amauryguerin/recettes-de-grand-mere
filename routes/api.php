@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\RecipeIndexController;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,17 @@ use app\Http\Controllers\RecipeIndexController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/recipies', [RecipeIndexController::class, 'index']);
+Route::get('/recipes', [RecipeController::class, 'index']);
+Route::prefix('/recipe')->group(function(){
+    Route::post('/store', [RecipeController::class, 'store']);
+    Route::put('/{id}', [RecipeController::class, 'update']);
+    Route::delete('/{id}', [RecipeController::class, 'destroy']);
+});

@@ -5,25 +5,31 @@
             <v-app-bar-title>Recettes de grand mère</v-app-bar-title>
         </v-app-bar>
         <v-main>
-            <v-container>
-                <v-row>
-                    <v-col v-for="n in 5" :key="n" cols="3">
-                        <RecipeCard />
-                    </v-col>
-                </v-row>
-            </v-container>
+            <RecipeList />
             <v-btn icon="$plus" size="x-large"></v-btn>
         </v-main>
     </v-app>
 </template>
 
 <script>
-import RecipeCard from '@/components/RecipeCard.vue';
+import RecipeList from '@/components/RecipeList.vue';
 
 export default {
-    name: 'App',
     components: {
-        RecipeCard,
+        RecipeList,
+    },
+    data: function() {
+        return {
+            recipes: []
+        };
+    },
+    methods: {
+        getRecipes() {
+
+        }
+    },
+    created() {
+        this.getRecipes();
     }
 }
 </script>

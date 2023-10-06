@@ -5,27 +5,48 @@
             <v-app-bar-title>Recettes de grand mère</v-app-bar-title>
         </v-app-bar>
         <v-main>
-            <RecipeList />
-            <v-btn icon="$plus" size="x-large"></v-btn>
+            <RecipeList :recipes="recipes" v-on:reloadList="getRecipes()" />
+            <v-row class="form--toggle" justify="center">
+                <v-dialog v-model="dialog" persistent width="1024">
+                    <template v-slot:activator="{ props }">
+                        <v-btn class="font-weight-bold" color="green" v-bind="props">Ajouter une recette</v-btn>
+                    </template>
+                    <v-card class="form--container">
+                        <v-btn color="white" variant="text" @click="dialog = false">x</v-btn>
+                        <RecipeForm />
+                    </v-card>
+                </v-dialog>
+            </v-row>
         </v-main>
     </v-app>
 </template>
 
 <script>
 import RecipeList from '@/components/RecipeList.vue';
+import RecipeForm from '@/components/RecipeForm.vue';
 
 export default {
     components: {
         RecipeList,
+        RecipeForm
     },
-    data: function() {
+    data: function () {
         return {
-            recipes: []
+            recipes: [],
+            dialog: false
         };
     },
+
     methods: {
         getRecipes() {
-
+            axios
+                .get("api/recipes")
+                .then(res => {
+                    this.recipes = res.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
         }
     },
     created() {
@@ -35,12 +56,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-btn {
+.form--toggle {
     position: fixed;
-    bottom: 10rem;
-    right: 10rem;
-    background-color: lightcoral;
-    color: #FFF;
-    font-size: 2rem;
+    bottom: 4rem;
+    right: 4rem;
+}
+
+.form--container {
+    background-color: lightgray;
+    padding: 2rem;
+
+    .v-btn {
+        background-color: red;
+        margin-left: auto;
+        margin-bottom: 2rem;
+        position: relative;
+
+    }
 }
 </style>

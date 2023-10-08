@@ -5,21 +5,16 @@
             <v-card-item>
                 <v-card-title> {{ recipe.title }} </v-card-title>
             </v-card-item>
-            <input type="text" value=""/>
             <v-card-text>
-                <v-list>
-                    <v-list-item v-for="n in 3" :key="n">Ingrédients</v-list-item>
-                </v-list>
-                <div>Étape 1 : allumer votre appareil...</div>
+                <p> {{ recipe.ingredient }} </p>
+                <p> {{ recipe.description }} </p>
             </v-card-text>
             <v-divider class="mx-4 mb-1"></v-divider>
             <v-card-actions>
-                <v-btn color="deep-purple-lighten-2" variant="text">
+                <v-btn color="orange-lighten-1" variant="text" class="font-weight-bold">
                     Modifier la recette
                 </v-btn>
-                <v-btn color="deep-purple-lighten-2" variant="text">
-                    Supprimer la recette
-                </v-btn>
+                <v-btn color="red" variant="text" icon="mdi-delete" @click="removeRecipe()"></v-btn>
             </v-card-actions>
         </v-card>
     </li>
@@ -29,7 +24,26 @@
 export default {
     props: ["recipe"],
     methods: {
-
+        removeRecipe() {
+            axios
+                .delete(`api/recipe/${this.recipe.id}`)
+                .then(res => {
+                    if (res.status == 200) {
+                        this.$emit("recipeChanged");
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     }
 }
 </script>
+
+<style lang="scss">
+    .v-card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+</style>

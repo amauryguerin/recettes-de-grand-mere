@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-app-bar>
+        <v-app-bar color="orange-lighten-2">
             <v-app-bar-nav-icon icon="mdi-home" href="/"></v-app-bar-nav-icon>
             <v-app-bar-title>Recettes de grand mère</v-app-bar-title>
         </v-app-bar>
@@ -11,9 +11,9 @@
                     <template v-slot:activator="{ props }">
                         <v-btn class="font-weight-bold" color="green" v-bind="props">Ajouter une recette</v-btn>
                     </template>
-                    <v-card class="form--container">
+                    <v-card class="form--container" color="white">
                         <v-btn color="white" variant="text" @click="dialog = false">x</v-btn>
-                        <RecipeForm />
+                        <RecipeForm v-on:reloadList="getRecipes()"/>
                     </v-card>
                 </v-dialog>
             </v-row>
@@ -56,6 +56,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+main {
+    background-color: #FFE0B2;
+}
+
 .form--toggle {
     position: fixed;
     bottom: 4rem;
@@ -73,5 +78,4 @@ export default {
         position: relative;
 
     }
-}
-</style>
+}</style>

@@ -20,7 +20,7 @@
             </v-card-text>
             <v-divider class="mx-4 mb-1"></v-divider>
             <v-card-actions>
-                <v-btn color="orange-lighten-1" variant="text" class="font-weight-bold" @click="toggleEditing()">
+                <v-btn color="amber-darken-3" variant="text" class="font-weight-bold" @click="toggleEditing()">
                     {{ recipe.editing ? "Enregistrer" : "Modifier la recette" }}
                 </v-btn>
                 <v-btn color="red" variant="text" icon="mdi-delete" @click="removeRecipe()"></v-btn>
@@ -31,6 +31,7 @@
 <script>
 export default {
     props: ["recipe"],
+
     methods: {
         toggleEditing() {
             this.recipe.editing = !this.recipe.editing;
@@ -59,6 +60,7 @@ export default {
     },
 };
 </script>
+
 <style lang="scss">
 .v-card-text {
     display: flex;

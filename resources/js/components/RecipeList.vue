@@ -17,11 +17,9 @@ export default {
 </script>
 
 <style lang="scss">
-
-    .recipe--list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        list-style-type: none;
-    }
-
+.recipe--list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style-type: none;
+}
 </style>

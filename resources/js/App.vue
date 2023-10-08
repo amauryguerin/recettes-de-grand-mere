@@ -13,7 +13,7 @@
                     </template>
                     <v-card class="form--container" color="white">
                         <v-btn color="white" variant="text" @click="dialog = false">x</v-btn>
-                        <RecipeForm v-on:reloadList="getRecipes()"/>
+                        <RecipeForm v-on:reloadList="getRecipes()" @recipeSubmitted="dialog=false" />
                     </v-card>
                 </v-dialog>
             </v-row>
@@ -49,6 +49,7 @@ export default {
                 })
         }
     },
+
     created() {
         this.getRecipes();
     }
@@ -56,7 +57,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 main {
     background-color: #FFE0B2;
 }
@@ -78,4 +78,5 @@ main {
         position: relative;
 
     }
-}</style>
+}
+</style>

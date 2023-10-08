@@ -3,16 +3,20 @@
         <v-card class="mx-auto my-12" max-width="374">
             <v-img cover height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
             <v-card-item>
-                <v-card-title v-if="!recipe.editing">{{
-                    recipe.title
-                }}</v-card-title>
-                <v-text-field v-model="recipe.title" v-else></v-text-field>
+                <v-card-title v-if="!recipe.editing">
+                    {{ recipe.title }}
+                </v-card-title>
+                <v-textarea v-model="recipe.title" v-else></v-textarea>
             </v-card-item>
             <v-card-text>
-                <p v-if="!recipe.editing">{{ recipe.ingredient }}</p>
-                <v-text-field v-model="recipe.ingredient" v-else></v-text-field>
-                <p v-if="!recipe.editing">{{ recipe.description }}</p>
-                <v-text-field v-model="recipe.description" v-else></v-text-field>
+                <p v-if="!recipe.editing">
+                    {{ recipe.ingredient }}
+                </p>
+                <v-textarea v-model="recipe.ingredient" v-else></v-textarea>
+                <p v-if="!recipe.editing">
+                    {{ recipe.description }}
+                </p>
+                <v-textarea v-model="recipe.description" v-else></v-textarea>
             </v-card-text>
             <v-divider class="mx-4 mb-1"></v-divider>
             <v-card-actions>
@@ -39,6 +43,7 @@ export default {
                 this.$emit("recipeChanged");
             }
         },
+
         removeRecipe() {
             axios
                 .delete(`api/recipe/${this.recipe.id}`)

@@ -1,14 +1,15 @@
 <template>
     <v-form ref="form" class="recipe--form">
-        <v-text-field v-model="recipe.title" :counter="50" :rules="recipeTitleRules"
-            label="Nom de la recette"></v-text-field>
+        <v-text-field v-model="recipe.title" :counter="50" :rules="recipeTitleRules" label="Nom de la recette"></v-text-field>
         <v-textarea v-model="recipe.ingredient" :rules="recipeIngredientRules"
             label="Ingrédients de la recette"></v-textarea>
         <v-textarea v-model="recipe.description" :rules="recipeDescriptionRules"
             label="Description de la recette"></v-textarea>
         <v-alert v-if="errorMessages.length > 0" type="error">
             <ul>
-                <li v-for="(message, index) in errorMessages" :key="index">{{ message }}</li>
+                <li v-for="(message, index) in errorMessages" :key="index">
+                    {{ message }}
+                </li>
             </ul>
         </v-alert>
         <v-btn color="success" class="mt-4" block @click="validateAndAddRecipe">
@@ -63,6 +64,7 @@ export default {
                         this.recipe.ingredient = "";
                         this.recipe.description = "";
                         this.$emit("reloadList");
+                        this.$emit("recipeSubmitted");
                     }
                 })
                 .catch(error => {
@@ -78,9 +80,9 @@ export default {
 </script>
 
 <style lang="scss">
-.recipe--form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+    .recipe--form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 </style>

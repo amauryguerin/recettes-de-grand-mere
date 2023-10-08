@@ -1,12 +1,17 @@
 <template>
     <v-form ref="form" class="recipe--form">
-        <v-text-field v-model="recipe.title" :rules="recipeTitleRules" label="Nom de la recette"
-            required></v-text-field>
-        <v-textarea v-model="recipe.ingredient" :rules="recipeIngredientRules" label="Ingrédients de la recette"
-            required></v-textarea>
-        <v-textarea v-model="recipe.description" :rules="recipeDescriptionRules" label="Description de la recette"
-            required></v-textarea>
-        <v-btn color="success" class="mt-4" block @click="validate, addRecipe()">
+        <v-text-field v-model="recipe.title" :counter="50" :rules="recipeTitleRules"
+            label="Nom de la recette"></v-text-field>
+        <v-textarea v-model="recipe.ingredient" :rules="recipeIngredientRules"
+            label="Ingrédients de la recette"></v-textarea>
+        <v-textarea v-model="recipe.description" :rules="recipeDescriptionRules"
+            label="Description de la recette"></v-textarea>
+        <v-alert v-if="errorMessages.length > 0" type="error">
+            <ul>
+                <li v-for="(message, index) in errorMessages" :key="index">{{ message }}</li>
+            </ul>
+        </v-alert>
+        <v-btn color="success" class="mt-4" block @click="validateAndAddRecipe">
             Ajouter ma recette
         </v-btn>
         <v-btn color="error" class="mt-4" block @click="reset">
@@ -32,14 +37,22 @@ export default {
             title: "",
             ingredient: "",
             description: ""
-        }
+        },
+        errorMessages: []
     }),
 
     methods: {
-        addRecipe() {
-            if (this.recipe.title == "") {
+        validateAndAddRecipe() {
+            const isValid = this.$refs.form.validate();
+            if (this.recipe.title === "" || this.recipe.ingredient === "" || this.recipe.description === "") {
                 return;
             }
+            if (isValid) {
+                this.addRecipe();
+            }
+        },
+
+        addRecipe() {
             axios
                 .post("api/recipe/store", {
                     recipe: this.recipe
@@ -54,15 +67,13 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
-                })
+                });
         },
-        async validate() {
-            const { valid } = await this.$refs.form.validate()
-        },
+
         reset() {
-            this.$refs.form.reset()
+            this.$refs.form.reset();
         }
-    },
+    }
 }
 </script>
 

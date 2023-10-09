@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <v-app-bar color="white">
-            <v-app-bar-nav-icon icon="mdi-home" href="/" color="amber-darken-3"></v-app-bar-nav-icon>
+            <v-btn icon="mdi-github" href="https://github.com/amauryguerin/recettes-de-grand-mere"></v-btn>
             <v-app-bar-title class="text-amber-darken-3">Recettes de grand mère</v-app-bar-title>
             <RecipeSearch :recipes="recipes" @filteredRecipes="updateFilteredRecipes" />
         </v-app-bar>
@@ -19,6 +19,7 @@
                     </v-card>
                 </v-dialog>
             </v-row>
+            
         </v-main>
     </v-app>
 </template>
@@ -92,7 +93,7 @@ header {
 
 .v-main {
     @media (max-width: 1280px) {
-        padding: 14rem 1rem!important;
+        padding: 14rem 1rem !important;
     }
 }
 
@@ -107,7 +108,7 @@ header {
 }
 
 .form--container {
-    padding: 2rem!important;
+    padding: 2rem !important;
 
     .v-btn {
         background-color: red;

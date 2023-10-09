@@ -68,7 +68,34 @@ export default {
 </script>
   
 
-<style lang="scss" scoped>
+<style lang="scss">
+header {
+    padding: 0 1rem;
+
+    @media (max-width: 768px) {
+        height: 12rem;
+    }
+}
+
+.v-toolbar__content {
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .v-input {
+        @media (max-width: 768px) {
+            width: 18rem;
+        }
+    }
+}
+
+.v-main {
+    @media (max-width: 1280px) {
+        padding: 14rem 1rem!important;
+    }
+}
+
 .v-input {
     padding: 0 1.5rem;
 }
@@ -80,7 +107,7 @@ export default {
 }
 
 .form--container {
-    padding: 2rem;
+    padding: 2rem!important;
 
     .v-btn {
         background-color: red;

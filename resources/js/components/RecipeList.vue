@@ -18,8 +18,18 @@ export default {
 
 <style lang="scss">
 .recipe--list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .recipe--item {
+        flex-basis: 30%;
+
+        @media (max-width: 768px) {
+            flex-basis: 100%;
+        }
+    }
 }
 </style>
